@@ -8,6 +8,8 @@
  * 				6 - Agregar a la aplicación el método de autenticación de usuario.
  */
 		include_once ('db_connection.php');
+		//header('location:login.php');
+
 ?>
 
 <head>

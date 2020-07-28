@@ -7,13 +7,33 @@ $query = "SELECT COUNT(*) as contar FROM usuarios WHERE mail = '$usuario' AND co
 $consulta= mysqli_query($connection,$query);
 $array = mysqli_fetch_array($consulta);
 
+
 if ($array['contar']>0){
-    $_SESSION['usuarios'] = $usuario;
+
+        // busca en la base de datos el rol del usuario
+        $sql = "SELECT * FROM usuarios WHERE mail = '$usuario'";
+        $resultato = mysqli_query($connection, $sql);
+    
+        if (mysqli_num_rows($resultato) == 1) {
+            $row = mysqli_fetch_array($resultato);
+            $role = $row['rol'];
+
+            echo "<br>";
+            echo $_SESSION['rol']= $role;
+            echo "<br>";
+            echo $_SESSION['usuarios'] = $usuario;
+             
+
+    header("location:includes/index.php");
+    }
 
     //echo $usuario;
     //echo $_SESSION['usuarios'];
-    header("location:includes/index.php");
+    
 }else{
     header("location:index.php");
 }
+
+mysqli_close($connection);
+
 ?>

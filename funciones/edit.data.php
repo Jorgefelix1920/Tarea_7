@@ -1,5 +1,5 @@
 <?php
-include('db_connection.php');
+require_once('../db_connection.php');
 
 if (isset($_REQUEST['id'])) {
     $id = $_REQUEST['id'];
@@ -34,7 +34,7 @@ if (isset($_POST['actualizar'])) {
    header("location:includes/index.php");
 }
 ?>
-<?php include('includes/header.php'); ?>
+<?php include('../includes/header.php'); ?>
 <div class="container p-4">
     <div class="row">
         <div class="col-md-4 mx-auto">
@@ -68,4 +68,4 @@ if (isset($_POST['actualizar'])) {
     </div>
 </div>
 </div>
-<?php include('includes/footer.php'); ?>
+<?php include('../includes/footer.php'); ?>

@@ -1,6 +1,7 @@
 <?php
-include('db_connection.php');
+require_once('../db_connection.php');
 
+// elimina datos de los productos
 if(isset($_REQUEST['id'])){
     $id =$_REQUEST['id'];
     $query = "DELETE FROM tarea_7_CRUD WHERE orden = $id";
@@ -10,7 +11,7 @@ if(isset($_REQUEST['id'])){
         die("No se encontro el Archivo");
         }
         
-        header("Location:includes/index.php");  // regresa al index
+        header("Location:../includes/index.php");  // regresa al index
         $_SESSION['mensaje']="Dato Borrado";
         $_SESSION['mensaje_color']="danger";
         

@@ -9,6 +9,7 @@ if(isset($_POST['save-task'])){
      $roles =$_REQUEST['roles'];
      $permisos =$_REQUEST['permiso'];
      $descripcion =$_REQUEST['descripcionProducto'];
+       
 
      $query ="INSERT INTO tarea_7_CRUD(productos,usuarios,roles,permisos,descripcion_Prod)VALUE ('$productos','$usuarios','$roles','$permisos','$descripcion')";
      $resultado =mysqli_query($connection,$query);
