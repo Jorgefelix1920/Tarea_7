@@ -31,7 +31,7 @@ if (isset($_POST['actualizar'])) {
 
     $_SESSION['mensaje']= 'Registro Actualizado';
     $_SESSION['mensaje_color']='warning';
-   header("location:includes/index.php");
+   header("location:../includes/index.php");
 }
 ?>
 <?php include('../includes/header.php'); ?>

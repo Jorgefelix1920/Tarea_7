@@ -2,34 +2,33 @@
 include_once('../db_connection.php');
 $usuario = $_SESSION['usuarios'];
 $rol = $_SESSION['rol'];
+
+
 include('../includes/header.php'); //header de la paguina
 
-
-
-
-if ($usuario === null && $rol === null) {
-    $mensaje = "Debes inicial sesión para poder ingresar a esta área";
+if ($usuario == null && $rol == null) {
+    $usuario = $_SESSION['usuarios']= "Usuario No Registrado";
+    $_SESSION['mensaje']= "Debes inicial sesión para poder ingresar a esta área";
     header("Location:session.php");
 } 
  
+ 
+if ($rol=="cliente"){
+    $usuario = $_SESSION['usuarios'];
+    $_SESSION['mensaje']= "No tiene persmisos para estar en esta area";
+    header("Location:session.php");
 
+}
 // evalua que tipo de usuario es
 switch ($rol) {
     case "admin":
-        
-        echo "admin";
+        $cargo= "Adminstrador";
         break;
 
     case "colaborador":
-        echo " Colaborador";
-        break;
-        
-    case "cliente":
-        $mensaje = "Esta area es solo para empleados";
-        header("Location:session.php");  
+        $cargo= " Colaborador";
         break;
     }
-
 ?>
 
 
@@ -48,7 +47,6 @@ switch ($rol) {
                 </div>
             <?php } ?>
             <!-- fin de Alerta -->
-
 
             <!-- inicio de card -->
             <!-- hacer validacion de datos del lado del usuario -->
@@ -78,6 +76,7 @@ switch ($rol) {
                 </form>
             </div>
         </div>
+        
         <!-- fin de card -->
         <script>
             function confirmarDelete() {
@@ -138,9 +137,31 @@ switch ($rol) {
         </div>
 
         <hr><br>
+        
+       
+
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                <div class="card card-doby">
+                <form action="../save.usuario.php" method="POST">
+				<h1>Crear Una Cuenta</h1>
+				<input type="text" name= "nombre" placeholder="Nombre" />
+				<input type="email" name="correo" placeholder="Email" />
+                <input type="password" name="password" placeholder="Password" />
+                <select name="rol" required>
+                        <option selected>Elige una Opcion</option>
+                        <option name="rol" value="cliente">Cliente</option>
+                        <option name="rol" value="admin">Administrador</option>
+                        <option name="rol" value="colaborador">Colaborador</option>
+                    </select>
+
+				<button type="submit" name ="registrarPanel" value="registrarPanel">Regístrate</button>
+			</form>
+                </form>
+            </div>
+        </div>
+                    <br><br>
                     <h1>Usuarios Registrados</h1>
                     <table class="table table-bordered">
                         <thead>
